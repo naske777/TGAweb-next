@@ -52,3 +52,8 @@ async function signIn(method, formData) {
     };
   }
 }
+
+export async function register(formData) {
+  console.log(formData);
+}
+
