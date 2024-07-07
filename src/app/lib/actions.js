@@ -40,7 +40,7 @@ async function signIn(method, formData) {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   // Check if the formData contains the valid username and password
   if (
-    formData.get("email") === "admin@admin" &&
+    formData.get("username") === "admin" &&
     formData.get("password") === "admin"
   ) {
     return { status: "success", message: "User authenticated." };
