@@ -1,19 +1,19 @@
 "use server";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export async function authenticate(_currentState, formData) {
+export async function authenticate(formData) {
   try {
-    console.log("detected");
     const res = await signIn("credentials", formData);
+
     //Falta la encriptacion de la cookie
     cookies().set("session", res, {
       httpOnly: false,
       secure: false,
-      maxAge: 60 * 60 * 24 , // One day
+      maxAge: 60 * 60 * 24, // One day
       path: "/",
     });
-    
-} catch (error) {
+  } catch (error) {
     if (error) {
       const errorMessages = {
         CredentialsSignin: "Invalid credentials.",
@@ -23,6 +23,8 @@ export async function authenticate(_currentState, formData) {
     }
     throw error;
   }
+
+  redirect("/");
 }
 
 async function signIn(method, formData) {
@@ -36,10 +38,11 @@ async function signIn(method, formData) {
 
   // Simulate a delay to mimic an async operation such as a database call
   await new Promise((resolve) => setTimeout(resolve, 1000));
-
   // Check if the formData contains the valid username and password
-  if (formData.email === "admin@admin" && formData.password === "admin") {
-    console.log("User authenticated.");
+  if (
+    formData.get("email") === "admin@admin" &&
+    formData.get("password") === "admin"
+  ) {
     return { status: "success", message: "User authenticated." };
   } else {
     // If the credentials are invalid, throw an error with a type that can be caught and handled
