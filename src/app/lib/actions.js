@@ -36,8 +36,6 @@ async function signIn(method, formData) {
     };
   }
 
-  // Simulate a delay to mimic an async operation such as a database call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   // Check if the formData contains the valid username and password
   if (
     formData.get("username") === "admin" &&
