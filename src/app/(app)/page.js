@@ -1,12 +1,20 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const handleHomeClick = (e) => {
+    e.preventDefault(); // Previene la navegación predeterminada
+    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  
+  };
+
   return (
     <main className="">
       <nav className="bg-violet-800  p-4">
         <div className="flex justify-between items-center">
-          <Link href="#home" className="font-semibold">
+          {/* Modifica este enlace */}
+          <Link href="#home" className="font-semibold" >
             Home
           </Link>
           
@@ -16,9 +24,11 @@ export default function Home() {
           <Link href="#be-uber" className="font-semibold">
             Be Uber
           </Link>
-          <Link href="#home" className="font-semibold">
-            <Image width={30} height={30} src="user.svg" alt="user"/>
+          <button >
+          <Link onClick={handleHomeClick}  href="#user" className="font-semibold">
+            <Image   width={30} height={30} src="user.svg" alt="user"/>
           </Link>
+          </button>
         </div>
       </nav>
       <div className="max-w-3xl mx-auto p-4">
