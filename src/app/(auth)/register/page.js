@@ -1,5 +1,5 @@
 import React from "react";
-import { register } from "@/app/lib/actions";
+import { register } from "./actions";
 import Link from "next/link";
 
 export default function Register() {

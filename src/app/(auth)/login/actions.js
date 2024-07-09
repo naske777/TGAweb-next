@@ -1,13 +1,15 @@
 "use server";
+import { api } from "@/app/lib/utilities/api";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function authenticate(formData) {
   try {
     const res = await signIn("credentials", formData);
-
+    const {access} = res;
+    if (!access) throw new Error("CredentialsSignin");
     //Falta la encriptacion de la cookie
-    cookies().set("session", res, {
+    cookies().set("token", access, {
       httpOnly: false,
       secure: false,
       maxAge: 60 * 60 * 24, // One day
@@ -36,22 +38,11 @@ async function signIn(method, formData) {
     };
   }
 
-  // Check if the formData contains the valid username and password
-  if (
-    formData.get("username") === "admin" &&
-    formData.get("password") === "admin"
-  ) {
-    return { status: "success", message: "User authenticated." };
-  } else {
-    // If the credentials are invalid, throw an error with a type that can be caught and handled
-    throw {
-      type: "CredentialsSignin",
-      message: "Invalid credentials provided.",
-    };
-  }
+  const jsonFromData = Object.fromEntries(formData);
+  
+  return await api("login", jsonFromData, "POST");
+  
+
 }
 
-export async function register(formData) {
-  console.log(formData);
-}
 

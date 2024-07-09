@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { authenticate } from "@/app/lib/actions";
 import Link from "next/link";
 import { SubmitButton } from "@/app/lib/components/buttons/SubmitButton";
+import { authenticate } from "./actions";
 
 export default function Login() {
 
