@@ -3,11 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const handleHomeClick = (e) => {
-    e.preventDefault(); // Previene la navegación predeterminada
-    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  
-  };
 
   return (
     <main className="">
@@ -25,7 +20,7 @@ export default function Home() {
             Be Uber
           </Link>
           <button >
-          <Link onClick={handleHomeClick}  href="#user" className="font-semibold">
+          <Link   href="#user" className="font-semibold">
             <Image   width={30} height={30} src="user.svg" alt="user"/>
           </Link>
           </button>
