@@ -10,8 +10,8 @@
 
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 50, 50, 50;
+    --background-end-rgb: 20, 20, 20;
   }
 html {
   font-size: 15px;
@@ -45,4 +45,22 @@ h4 {
 
 p {
   text-wrap: pretty;
+}
+
+.svgFill {
+  fill: currentColor !important;
+}
+
+
+.mapboxgl-popup-content   {
+  background-color: #333 !important; /* Fondo oscuro */
+  color: #fff; /* Texto claro */
+  padding: 10px !important; /* Añade un poco de padding para mejor visualización */
+  border-radius: 5px !important; /* Opcional: bordes redondeados */
+}
+
+.mapboxgl-popup-close-button{
+  top: 5px !important;
+
+right: 10px !important;
 }

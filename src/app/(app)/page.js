@@ -20,7 +20,7 @@ export default function Home() {
             Be Uber
           </Link>
           <button >
-          <Link   href="#user" className="font-semibold">
+          <Link   href="/account" className="font-semibold">
             <Image   width={30} height={30} src="user.svg" alt="user"/>
           </Link>
           </button>

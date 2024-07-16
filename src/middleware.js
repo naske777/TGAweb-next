@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 // Export a single middleware function
 export function middleware(request) {
-  if (!request.cookies.has("session"))
-    return NextResponse.redirect(new URL("/login", request.url));
+  // if (!request.cookies.has("token") || !request.cookies.has("id") )
+  //   return NextResponse.redirect(new URL("/login", request.url));
 
   return NextResponse.next();
 }

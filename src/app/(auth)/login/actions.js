@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 export async function authenticate(formData) {
   try {
     const res = await signIn("credentials", formData);
-    const {access} = res;
-    if (!access) throw new Error("CredentialsSignin");
+    const {access , id} = res;
+    if (!access || !id) throw new Error("CredentialsSignin");
     //Falta la encriptacion de la cookie
     cookies().set("token", access, {
       httpOnly: false,
@@ -15,7 +15,15 @@ export async function authenticate(formData) {
       maxAge: 60 * 60 * 24, // One day
       path: "/",
     });
+    cookies().set("id", id, {
+      httpOnly: false,
+      secure: false,
+      maxAge: 60 * 60 * 24, // One day
+      path: "/",
+    });
+    
   } catch (error) {
+    console.log(error);
     if (error) {
       const errorMessages = {
         CredentialsSignin: "Invalid credentials.",
