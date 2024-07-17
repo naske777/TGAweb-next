@@ -6,11 +6,14 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Construye la URL completa usando el origen
+  const apiUrl = `${self.location.origin}/api/map`;
+
   // Immediately call event.respondWith with a promise that resolves to the response
   event.respondWith(
     (async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/map", {
+        const res = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
